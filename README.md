@@ -1,6 +1,9 @@
 # Fully Convolutional Networks for Semantic Segmentation
+# 完全卷积网络的语义分割
+This is the reference implementation of the models and code for the fully convolutional networks (FCNs) in the [PAMI FCN]
+(https://arxiv.org/abs/1605.06211) and [CVPR FCN](http://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Long_Fully_Convolutional_Networks_2015_CVPR_paper.html) papers:
 
-This is the reference implementation of the models and code for the fully convolutional networks (FCNs) in the [PAMI FCN](https://arxiv.org/abs/1605.06211) and [CVPR FCN](http://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Long_Fully_Convolutional_Networks_2015_CVPR_paper.html) papers:
+这是PAMI FCN和CVPR FCN论文中完全卷积网络（FCN）的模型和代码的参考实现
 
     Fully Convolutional Models for Semantic Segmentation
     Evan Shelhamer*, Jonathan Long*, Trevor Darrell
@@ -13,13 +16,22 @@ This is the reference implementation of the models and code for the fully convol
     arXiv:1411.4038
 
 **Note that this is a work in progress and the final, reference version is coming soon.**
-Please ask Caffe and FCN usage questions on the [caffe-users mailing list](https://groups.google.com/forum/#!forum/caffe-users).
 
+**请注意，这是一项正在进行中的工作，最终的参考版即将推出.** 
+
+Please ask Caffe and FCN usage questions on the [caffe-users mailing list](https://groups.google.com/forum/#!forum/caffe-users). 
 Refer to [these slides](https://docs.google.com/presentation/d/10XodYojlW-1iurpUsMoAZknQMS36p7lVIfFZ-Z7V_aY/edit?usp=sharing) for a summary of the approach.
+
+请在caffe-users邮件列表上询问Caffe和FCN使用问题。请参阅这些幻灯片，了解该方法的总结。
 
 These models are compatible with `BVLC/caffe:master`.
 Compatibility has held since `master@8c66fa5` with the merge of PRs #3613 and #3570.
+
+这些模型和`BVLC/caffe:master`兼容。兼容性一直保持不变自合并master@8c66fa5PR＃3613和＃3570 以来。
+
 The code and models here are available under the same license as Caffe (BSD-2) and the Caffe-bundled models (that is, unrestricted use; see the [BVLC model license](http://caffe.berkeleyvision.org/model_zoo.html#bvlc-model-license)).
+
+代码和模型在的使用限制和Caffe和Caffee（BSD-2）捆绑模式相同（详情BVLC模型许可协议）。
 
 **PASCAL VOC models**: trained online with high momentum for a ~5 point boost in mean intersection-over-union over the original models.
 These models are trained using extra data from [Hariharan et al.](http://www.cs.berkeley.edu/~bharath2/codes/SBD/download.html), but excluding SBD val.
@@ -63,11 +75,14 @@ The evaluation of the geometric classes is fine.
 * [FCN-8s PASCAL-Context](pascalcontext-fcn8s): three stream, 8 pixel prediction stride net
 
 ## Frequently Asked Questions
+## 常见问题
 
 **Is learning the interpolation necessary?** In our original experiments the interpolation layers were initialized to bilinear kernels and then learned.
 In follow-up experiments, and this reference implementation, the bilinear kernels are fixed.
 There is no significant difference in accuracy in our experiments, and fixing these parameters gives a slight speed-up.
 Note that in our networks there is only one interpolation kernel per output class, and results may differ for higher-dimensional and non-linear interpolation, for which learning may help further.
+
+**是否需要学习插值？** 在我们原来的实验中，插值层被初始化为双线性核，然后被学习。在后续实验和这个参考实现中，双线性内核是固定的。在我们的实验中精确度没有显着差异，固定这些参数可以稍微加快速度。请注意，在我们的网络中，每个输出类只有一个插值内核，对于更高维和非线性插值，结果可能会有所不同，对此学习可能会有所帮助。
 
 **Why pad the input?**: The 100 pixel input padding guarantees that the network output can be aligned to the input for any input size in the given datasets, for instance PASCAL VOC.
 The alignment is handled automatically by net specification and the crop layer.
